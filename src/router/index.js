@@ -7,7 +7,7 @@ const routes = [{
   path: '/',
   name: 'Home',
   meta: {
-    title: 'Spending - Início'
+    title: 'Início'
   },
   // O webpackChunkName serve para chamar o componente somente quando necessário pela rota, ele cria o componenente da rota de forma separada
   component: () => import(/* webpackChunkName: "home" */ '../pages/home/Home.vue')
@@ -16,7 +16,7 @@ const routes = [{
   path: '/despesas',
   name: 'Despesas',
   meta: {
-    title: 'Spending - Despesas'
+    title: 'Despesas'
   },
   component: () => import(/* webpackChunkName: "despesas" */ '../pages/despesas/Despesas.vue')
 },
@@ -24,7 +24,7 @@ const routes = [{
   path: '/login',
   name: 'Login',
   meta: {
-    title: 'Spending - Entrar'
+    title: 'Entrar'
   },
   component: () => import(/* webpackChunkName: "login" */ '../pages/login/login.vue')
 }
@@ -38,7 +38,8 @@ const router = new VueRouter({
 
 // É executado a cada mudança de rota
 router.beforeEach((to, from, next) => {
-  document.title = to.meta.title
+  // Configurando o título das rotas de forma dinâmica
+  document.title = `Spending - ${to.meta.title}`
 
   // Se não existe uid e o nome da rota é diferente de login, o usuário é redirecionado para login
   if (!window.uid && to.name !== 'Login') {
