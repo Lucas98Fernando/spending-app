@@ -1,4 +1,5 @@
-# spending
+# Spending - Ajudando você a organizar suas finanças
+Aplicação desenvolvida com Vue JS, Bootstrap 4 e integrado com o Firebase
 
 ## Project setup
 ```

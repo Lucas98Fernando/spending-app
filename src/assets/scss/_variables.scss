@@ -1,0 +1,26 @@
+// Cores customizadas
+
+$dark: #000 !important;
+$darker: #222 !important;
+$dark-medium: #333 !important;
+$dark-low: #777 !important;
+$light-low: #999 !important;
+$light-medium: #ddd !important;
+$ligther: #ddd !important;
+$light: #f5f5f5 !important;
+
+$featured: #70e000 !important;
+$featured-dark: #38b000 !important;
+
+:root {
+    --dark: #{$dark};
+    --darker: #{$darker};
+    --dark-medium: #{$dark-medium};
+    --dark-low: #{$dark-low};
+    --light-low: #{$light-low};
+    --light-medium: #{$light-medium};
+    --ligther: #{$ligther};
+    --light: #{$light};
+    --featured: #{$featured};
+    --featured-dark: #{$featured-dark};
+}
