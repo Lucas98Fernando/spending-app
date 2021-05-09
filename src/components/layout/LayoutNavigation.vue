@@ -1,14 +1,21 @@
 <template>
-  <nav class="nav flex-column">
-    <router-link
-      :key="link.id"
-      v-for="link in links"
-      :to="link.to "
-      class="nav-link"
-    >
-    <i :class="link.icon"></i>
-      {{ link.name }}
-    </router-link>
+  <nav class="nav flex-column justify-content-between">
+    <div>
+      <router-link
+        :key="link.id"
+        v-for="link in links"
+        :to="link.to"
+        class="nav-link"
+      >
+        <i :class="link.icon"></i>
+        {{ link.name }}
+      </router-link>
+
+      <hr>
+
+      <btn-nova-despesa />
+    </div>
+    <logout />
     <!-- <router-link class="nav-link" aria-current="page" to="/">
       <i class="fas fa-home"></i>
       Início
@@ -21,8 +28,12 @@
 </template>
 
 <script>
+import BtnNovaDespesa from './LayoutNovaDespesa'
+import Logout from './LayoutLogout'
+
 export default {
   name: 'Layout Navigation',
+  components: { BtnNovaDespesa, Logout },
   data () {
     return {
       links: [

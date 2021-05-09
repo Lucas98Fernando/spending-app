@@ -9,6 +9,8 @@ $light-medium: #ddd !important;
 $ligther: #ddd !important;
 $light: #f5f5f5 !important;
 
+$red-dark: #d00000 !important;
+
 $featured: #70e000 !important;
 $featured-dark: #38b000 !important;
 
@@ -21,6 +23,7 @@ $featured-dark: #38b000 !important;
     --light-medium: #{$light-medium};
     --ligther: #{$ligther};
     --light: #{$light};
+    --red-dark: #{$red-dark};
     --featured: #{$featured};
     --featured-dark: #{$featured-dark};
 }
