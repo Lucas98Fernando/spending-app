@@ -9,7 +9,7 @@
           </div>
           <layout-navigation />
         </div>
-        <div class="col">
+        <div class="col content-right py-4 px-4">
           <router-view />
         </div>
       </div>
@@ -51,7 +51,7 @@ export default {
 <style lang="scss">
 #app {
   min-height: 100vh;
-  background-color: var(--darker);
+  background-color: var(--dark-medium);
   color: var(--light);
 
   .sidebar {
@@ -59,6 +59,13 @@ export default {
     .logo-sidebar {
       width: 70px;
     }
+  }
+
+  .content-right {
+    background: var(--darker);
+    border-radius: 40px;
+    margin: 0.7rem 0.7rem 0.7rem 0;
+    border: 1px solid var(--featured-dark);
   }
 }
 </style>

@@ -11,10 +11,14 @@
     border-radius: 20px !important;
 }
 
-.btn-primary {
-    background-color: var(--featured-dark) !important;
+.btn-primary,
+.btn-secondary {
     border: none !important;
     border-radius: 15px !important;
+}
+
+.btn-primary {
+    background-color: var(--featured-dark) !important;
 
     &:hover {
         background-color: var(--featured) !important;

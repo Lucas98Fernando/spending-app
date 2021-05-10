@@ -32,7 +32,7 @@ import BtnNovaDespesa from './LayoutNovaDespesa'
 import Logout from './LayoutLogout'
 
 export default {
-  name: 'Layout Navigation',
+  name: 'LayoutNavigation',
   components: { BtnNovaDespesa, Logout },
   data () {
     return {
@@ -62,8 +62,8 @@ export default {
 
   .nav-link {
     color: var(--light);
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
+    /* border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px; */
     transition: 0.5s ease-in-out;
 
     &.router-link-exact-active {
