@@ -49,6 +49,33 @@
                     required
                   />
                 </div>
+                <div class="form-group mt-4 col-12">
+                  <input
+                    class="d-none"
+                    ref="inputFile"
+                    type="file"
+                    accept="image/*"
+                    @change="handleFile($event)"
+                  />
+                  <button
+                    type="button"
+                    class="btn btn-outline-secondary"
+                    @click="openFileDialog()"
+                  >
+                    Adicionar comprovante
+                  </button>
+                  <div class="mt-2" v-if="form.receipt">
+                    {{ form.receipt.name }}
+
+                    <button
+                      @click="form.receipt = ''"
+                      type="button"
+                      class="btn badge badge-light"
+                    >
+                      <i class="far fa-trash-alt text-danger"></i>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="modal-footer">
@@ -81,40 +108,87 @@ export default {
       showModal: false,
       form: {
         description: '',
-        value: ''
+        value: '',
+        receipt: ''
+      }
+    }
+  },
+  computed: {
+    // Para evitar ter nomes de arquivos repetidos
+    fileName () {
+      const { receipt } = this.form
+
+      // Se houver arquivos com nome repetidos, será concatenado a hora atual
+      if (receipt) {
+        const split = receipt.name.split('.')
+        return `${split[0]}-${new Date().getTime()}.${split[1]}`
+      } else {
+        return ''
       }
     }
   },
   methods: {
+    // Abrir a caixa de upload de arquivos através do botão
+    openFileDialog () {
+      this.$refs.inputFile.value = ''
+      // Acessando uma referência na DOM com o ref
+      this.$refs.inputFile.click()
+    },
+    handleFile (event) {
+      this.form.receipt = event.target.files[0]
+      // console.log(event)
+    },
     // Método para adicionar os items no firebase
-    submit () {
-      this.$root.$emit('Spinner::show')
-      // Passando o uid do usuário para o firebase
-      const ref = this.$firebase.database().ref(window.uid)
-      // Gera um hash único pra utilizar no firebase
-      const id = ref.push().key
+    async submit () {
+      // Váriavel da URL da imagem
+      let url = ''
 
-      // Dados que serão incluídos no firebase
-      const payload = {
-        id, // ID gerado
-        receipt: '', // Arquivo de upload
-        value: this.form.value, // Valor da despesa
-        createdAt: new Date().getTime(), // Timestamp da hora atual
-        description: this.form.description
-      }
+      try {
+        this.$root.$emit('Spinner::show')
+        // Passando o uid do usuário para o firebase
+        const ref = this.$firebase.database().ref(window.uid)
+        // Gera um hash único pra utilizar no firebase
+        const id = ref.push().key
 
-      // Criando uma nova entrada no banco do firebase, com os dados informados no form de despesas
-      ref.child(id).set(payload, (err) => {
-        this.$root.$emit('Spinner::hide')
-        // Tratamento dos erros no processo de inserção no firebase
-        if (err) {
-          console.error(err)
-        } else {
-          this.closeModal()
-          this.form.description = ''
-          this.form.value = ''
+        // Se houver arquivo anexado
+        if (this.form.receipt) {
+          // Incluí ele no banco do firebase
+          const snapshot = await this.$firebase
+            .storage()
+            .ref(window.uid)
+            .child(this.fileName)
+            .put(this.form.receipt)
+
+          // Gerando uma URL para imagem do comprovante da despesa
+          url = await snapshot.ref.getDownloadURL()
         }
-      })
+
+        // Dados que serão incluídos no firebase
+        const payload = {
+          id, // ID gerado
+          receipt: url, // Arquivo de upload
+          value: this.form.value, // Valor da despesa
+          createdAt: new Date().getTime(), // Timestamp da hora atual
+          description: this.form.description
+        }
+
+        // Criando uma nova entrada no banco do firebase, com os dados informados no form de despesas
+        ref.child(id).set(payload, (err) => {
+          // Tratamento dos erros no processo de inserção no firebase
+          if (err) {
+            console.error(err)
+          } else {
+            this.closeModal()
+            this.form.description = ''
+            this.form.value = ''
+          }
+        })
+      } catch (err) {
+        console.error(err)
+      } finally {
+        // Quando as operações de tratamento encerrarem, o spinner desaparece
+        this.$root.$emit('Spinner::hide')
+      }
     },
     // Fechar o modal
     closeModal () {

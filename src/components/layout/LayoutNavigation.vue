@@ -1,5 +1,5 @@
 <template>
-  <nav class="nav flex-column justify-content-between">
+  <nav id="sidenav" class="nav flex-column justify-content-between">
     <div>
       <router-link
         :key="link.id"
@@ -56,7 +56,7 @@ export default {
 </script>
 
 <style lang="scss">
-.nav {
+#sidenav {
   height: calc(100vh - 118px);
   margin: 0 -0.7rem;
 

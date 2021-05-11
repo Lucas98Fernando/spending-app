@@ -10,6 +10,7 @@
           <layout-navigation />
         </div>
         <div class="col content-right py-4 px-4">
+          <layout-app-bar />
           <router-view />
         </div>
       </div>
@@ -20,11 +21,12 @@
 </template>
 
 <script>
-import BaseSpinner from './components/global/BaseSpinner.vue'
-import LayoutNavigation from './components/layout/LayoutNavigation.vue'
+import BaseSpinner from './components/global/BaseSpinner'
+import LayoutNavigation from './components/layout/LayoutNavigation'
+import LayoutAppBar from './components/layout/LayoutAppBar'
 export default {
   name: 'App',
-  components: { BaseSpinner, LayoutNavigation },
+  components: { BaseSpinner, LayoutNavigation, LayoutAppBar },
   data () {
     return {
       isLogged: false
@@ -35,6 +37,7 @@ export default {
     this.$firebase.auth().onAuthStateChanged((user) => {
       window.uid = user ? user.uid : null
       this.isLogged = !!user
+      // console.log(user)
 
       // Se o usuário tiver uid, é direcionado para home, se não... é redirecionado para login
       this.$router.push({ name: window.uid ? 'Home' : 'Login' })

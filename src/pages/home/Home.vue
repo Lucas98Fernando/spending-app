@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Você está logado</h1>
+    <h1>Dados estatísticos das despesas</h1>
   </div>
 </template>
 
