@@ -73,9 +73,24 @@ export default {
 
         // Com o usuário autenticado, acontece o redirecionamento para a rota: '/home'
         this.$router.push({ name: 'Home' })
-        console.log(res)
+        // console.log(res)
       } catch (err) {
-        console.log(err)
+        let messageError = ''
+
+        switch (err.code) {
+          case 'auth/user-not-found':
+            messageError = 'E-mail incorreto.'
+            break
+          case 'auth/wrong-password':
+            messageError = 'Senha incorreta.'
+            break
+          default:
+            messageError = 'Não foi possível realizar o login.'
+        }
+        this.$root.$emit('Notification::show', {
+          type: 'danger',
+          message: messageError
+        })
       }
 
       // Configurando o loading para falso, caso não aconteça o login

@@ -86,7 +86,15 @@
               >
                 Fechar
               </button>
-              <button class="btn btn-primary">Adicionar</button>
+              <button class="btn btn-primary" :disabled="loading">
+                <template v-if="loading">
+                  <i class="fas fa-spinner fa-spin"></i>
+                  Adicionando...
+                </template>
+                <template v-else>
+                  Adicionar
+                </template>
+              </button>
             </div>
           </div>
         </div>
@@ -105,6 +113,7 @@ export default {
   name: 'LayoutNovaDespesa',
   data () {
     return {
+      loading: false,
       showModal: false,
       form: {
         description: '',
@@ -142,6 +151,7 @@ export default {
     async submit () {
       // Váriavel da URL da imagem
       let url = ''
+      this.loading = true
 
       try {
         this.$root.$emit('Spinner::show')
@@ -176,18 +186,33 @@ export default {
         ref.child(id).set(payload, (err) => {
           // Tratamento dos erros no processo de inserção no firebase
           if (err) {
-            console.error(err)
+            this.$root.$emit('Notification::show', {
+              type: 'danger',
+              message: 'Não foi possível adicionar a despesa.'
+            })
+            this.loading = false
           } else {
+            this.$root.$emit('Notification::show', {
+              type: 'success',
+              message: 'Despesa adicionada com sucesso!'
+            })
+
             this.closeModal()
             this.form.description = ''
             this.form.value = ''
+            this.loading = false
           }
         })
       } catch (err) {
-        console.error(err)
+        this.$root.$emit('Notification::show', {
+          type: 'danger',
+          message: 'Não foi possível adicionar a despesa.'
+        })
+        this.loading = false
       } finally {
         // Quando as operações de tratamento encerrarem, o spinner desaparece
         this.$root.$emit('Spinner::hide')
+        this.loading = false
       }
     },
     // Fechar o modal

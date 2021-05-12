@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <base-spinner />
+    <layout-notification />
     <div class="container-fluid" v-if="isLogged">
       <div class="row">
         <div class="col-2 sidebar">
@@ -22,11 +23,17 @@
 
 <script>
 import BaseSpinner from './components/global/BaseSpinner'
+import LayoutNotification from './components/layout/LayoutNotification'
 import LayoutNavigation from './components/layout/LayoutNavigation'
 import LayoutAppBar from './components/layout/LayoutAppBar'
 export default {
   name: 'App',
-  components: { BaseSpinner, LayoutNavigation, LayoutAppBar },
+  components: {
+    BaseSpinner,
+    LayoutNotification,
+    LayoutNavigation,
+    LayoutAppBar
+  },
   data () {
     return {
       isLogged: false
