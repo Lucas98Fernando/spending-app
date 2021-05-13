@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import FirebaseVue from './firebase'
 import router from './router'
+import './utils/directives'
 
 // CSS customizado
 import './assets/scss/app.scss'

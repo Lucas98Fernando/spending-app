@@ -5,46 +5,46 @@
         <div class="card">
           <div class="card-body">
             <h3 class="card-title">Seus gastos</h3>
-            <h6 class="card-subtitle mb-2 text-muted">Resumo de todos os seus gastos</h6>
-            <p class="card-text">
-              R$ 500,00
-            </p>
+            <h6 class="card-subtitle mb-2 text-muted">
+              Resumo de todos os seus gastos
+            </h6>
+            <span class="card-text" v-money-format="totals.totalSpend"></span>
+            <span>em 15 compras</span>
           </div>
         </div>
       </div>
       <div class="col-6 box-stats">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p class="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
+            <h3 class="card-title">Valor médio das despesas</h3>
+            <h6 class="card-subtitle mb-2 text-muted">
+              Média baseada em todos os seus gastos
+            </h6>
+            <span class="card-text" v-money-format="totals.averageSpend"></span>
           </div>
         </div>
       </div>
       <div class="col-6 box-stats">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p class="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
+            <h3 class="card-title">Maior despesa</h3>
+            <h6 class="card-subtitle mb-2 text-muted">
+              Maior valor gasto em todas as suas depesas
+            </h6>
+            <span class="card-text" v-money-format="totals.biggest.value"></span>
+            <span v-date-format="totals.biggest.createdAt"></span>
           </div>
         </div>
       </div>
       <div class="col-6 box-stats">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p class="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
+            <h3 class="card-title">Menor despesa</h3>
+            <h6 class="card-subtitle mb-2 text-muted">
+              Menor valor gasto em todas as suas depesas
+            </h6>
+            <span class="card-text" v-money-format="totals.lowest.value"></span>
+            <span v-date-format="totals.lowest.createdAt"></span>
           </div>
         </div>
       </div>
@@ -62,6 +62,41 @@ export default {
   },
   created () {
     this.getData()
+  },
+  computed: {
+    // Propriedades computadas para gerar os dados para home, exxtraindo informações do firebase
+    totals () {
+      const { spendings: spend } = this
+      const values = {
+        totalSpend: 0,
+        averageSpend: 0,
+        biggest: {},
+        lowest: {}
+      }
+
+      if (spend.length) {
+        // Total gasto
+        // Transformando os dados em um map, depois conventendo para float e realizando a soma com o reduce
+        // O count é o valor total, o curr, é o valor atual para ser incrementado
+        values.totalSpend = spend
+          .map((e) => parseFloat(e.value))
+          .reduce((count, curr) => count + curr, 0)
+
+        // Média de gastos
+        values.averageSpend = values.totalSpend / spend.length
+
+        // Maior valor
+        values.biggest = spend.sort(
+          (a, b) => parseFloat(b.value) - parseFloat(a.value)
+        )[0]
+
+        // Menor valor
+        values.lowest = spend.sort(
+          (a, b) => parseFloat(a.value) - parseFloat(b.value)
+        )[0]
+      }
+      return values
+    }
   },
   methods: {
     // Método para resgatar as informações do banco do firebase
@@ -89,38 +124,28 @@ export default {
       color: var(--light);
       background: var(--dark-medium);
       border: 1px solid var(--featured-dark);
-      height: calc(40vh - 0.5rem);
+      height: calc(40vh - 0.6rem);
       margin: 10px 0;
+      transition: 0.3s ease-in-out;
 
       .card-body {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
+
+        .card-text {
+          font-size: 2rem;
+          color: var(--featured-dark);
+          font-weight: 700;
+        }
+      }
+
+      &:hover {
+        transform: scale(1.03);
+        transition: 0.3s ease-in-out;
       }
     }
   }
 }
-
-  /* .box-stats {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: calc(42vh - 1.3rem);
-    border: 1px solid var(--featured-dark);
-
-    .card {
-      width: 100%;
-    }
-
-    &:nth-child(2),
-    &:nth-child(4) {
-      border-left: none;
-    }
-
-    &:nth-child(3),
-    &:nth-child(4) {
-      border-top: none;
-    }
-  } */
 </style>
