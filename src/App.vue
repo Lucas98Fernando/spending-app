@@ -6,7 +6,8 @@
       <div class="row">
         <div class="col-2 sidebar">
           <div class="text-center my-4">
-            <img class="logo-sidebar" src="./assets/logo.png" />
+            <img class="logo-sidebar" src="./assets/images/spending.png" />
+            <h2>Sp&euro;ndings</h2>
           </div>
           <layout-navigation />
         </div>

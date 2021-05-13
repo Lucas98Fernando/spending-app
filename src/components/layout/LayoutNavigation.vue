@@ -57,7 +57,7 @@ export default {
 
 <style lang="scss">
 #sidenav {
-  height: calc(100vh - 118px);
+  height: calc(100vh - 158px);
   margin: 0 -0.7rem;
 
   .nav-link {

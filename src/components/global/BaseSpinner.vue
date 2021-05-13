@@ -1,6 +1,6 @@
 <template>
   <div class="base-spinner fa-3x" v-if="visible">
-    <img class="logo-loading" src="../../assets/logo.png" />
+    <img class="logo-loading" src="../../assets/images/spending.png" />
     <i class="fas fa-spinner fa-spin"></i>
   </div>
 </template>
