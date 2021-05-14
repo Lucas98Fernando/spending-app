@@ -16,7 +16,7 @@ const routes = [{
   path: '/despesas',
   name: 'Despesas',
   meta: {
-    title: 'Despesas'
+    title: 'Lista de Despesas'
   },
   component: () => import(/* webpackChunkName: "despesas" */ '../pages/despesas/Despesas.vue')
 },
@@ -24,7 +24,7 @@ const routes = [{
   path: '/login',
   name: 'Login',
   meta: {
-    title: 'Entrar'
+    title: 'Entre na sua conta'
   },
   component: () => import(/* webpackChunkName: "login" */ '../pages/login/login.vue')
 }
@@ -39,7 +39,7 @@ const router = new VueRouter({
 // É executado a cada mudança de rota
 router.beforeEach((to, from, next) => {
   // Configurando o título das rotas de forma dinâmica
-  document.title = `Spending - ${to.meta.title}`
+  document.title = `Spendings - ${to.meta.title}`
 
   // Se não existe uid e o nome da rota é diferente de login, o usuário é redirecionado para login
   if (!window.uid && to.name !== 'Login') {

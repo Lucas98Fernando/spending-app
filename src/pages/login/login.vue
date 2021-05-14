@@ -4,9 +4,9 @@
       <div class="card">
         <div class="card-body">
           <div class="text-center">
-            <img class="fluid logo-login" src="../../assets/logo.png" alt="" />
+            <img class="fluid logo-login" src="../../assets/images/spending.png" alt="" />
           </div>
-          <h1 class="text-center mb-4">Spending</h1>
+          <h1 class="text-center mb-4">Sp&euro;ndings</h1>
           <div class="form-group mb-4">
             <label class="label-text" for="email">E-mail</label>
             <input
