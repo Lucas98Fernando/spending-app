@@ -1,5 +1,5 @@
-# Spendings - Ajudando você a organizar suas finanças
-Aplicação desenvolvida com Vue JS, Bootstrap 4 e integrado com o Firebase
+<h1 align="center">Spendings <br> Ajudando você a organizar suas despesas. 💸</h1>
+<p>Aplicação desenvolvida com Vue JS, Bootstrap 4 e integrado com o Firebase.</p>
 
 ## Project setup
 ```
