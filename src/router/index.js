@@ -7,7 +7,8 @@ const routes = [{
   path: '/',
   name: 'Home',
   meta: {
-    title: 'Início'
+    title: 'Início',
+    description: 'Estatísticas das despesas'
   },
   // O webpackChunkName serve para chamar o componente somente quando necessário pela rota, ele cria o componenente da rota de forma separada
   component: () => import(/* webpackChunkName: "home" */ '../pages/home/Home.vue')
@@ -16,7 +17,8 @@ const routes = [{
   path: '/despesas',
   name: 'Despesas',
   meta: {
-    title: 'Lista de Despesas'
+    title: 'Lista de Despesas',
+    description: 'Lista das despesas'
   },
   component: () => import(/* webpackChunkName: "despesas" */ '../pages/spendings/SpendingsList.vue')
 },
