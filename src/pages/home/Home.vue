@@ -9,7 +9,7 @@
               Resumo de todos os seus gastos
             </h6>
             <span class="card-text" v-money-format="totals.totalSpend"></span>
-            <span>em 15 compras</span>
+            <span>em {{ spendings.length }} compras</span>
           </div>
         </div>
       </div>

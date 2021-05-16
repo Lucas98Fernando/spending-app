@@ -18,7 +18,7 @@ const routes = [{
   meta: {
     title: 'Lista de Despesas'
   },
-  component: () => import(/* webpackChunkName: "despesas" */ '../pages/despesas/Despesas.vue')
+  component: () => import(/* webpackChunkName: "despesas" */ '../pages/spendings/SpendingsList.vue')
 },
 {
   path: '/login',
