@@ -42,6 +42,7 @@ export default {
 <style lang="scss" scoped>
 .alert {
   position: absolute;
+  z-index: 1000;
   right: 20px;
   top: 20px;
   max-width: 400px;

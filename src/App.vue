@@ -11,7 +11,7 @@
           </div>
           <layout-navigation />
         </div>
-        <div class="col content-right py-4 px-4">
+        <div class="col content-right py-2 px-4">
           <layout-app-bar />
           <router-view />
         </div>

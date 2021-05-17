@@ -16,15 +16,18 @@
 
     <!-- Lista das despesas-->
     <div class="container-fluid container-list-spendings">
-      <div v-if="!activeMonth.data.length">
-        Nenhum dado cadastrado
-      </div>
+      <div v-if="!activeMonth.data.length">Nenhum dado cadastrado</div>
       <template v-else>
+        <div class="row mb-2 heading-table">
+          <div class="col-2"><span>Data de criação</span></div>
+          <div class="col-8"><span>Descrição</span></div>
+          <div class="col-2"><span>Valor</span></div>
+        </div>
         <spending-list-item
           :key="index"
           :data="item"
           v-for="(item, index) in activeMonth.data"
-         />
+        />
       </template>
     </div>
   </div>
@@ -167,5 +170,11 @@ export default {
 
 .container-list-spendings {
   padding: 2rem 0 1rem;
+
+  .heading-table span {
+    font-size: 1.1rem;
+    color: var(--light-medium);
+    font-weight: 600;
+  }
 }
 </style>

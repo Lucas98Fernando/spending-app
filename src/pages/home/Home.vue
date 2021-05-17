@@ -4,6 +4,7 @@
       <div class="col-6 box-stats">
         <div class="card">
           <div class="card-body">
+            <img src="../../assets/images/coins1.png" alt="Seus gastos">
             <h3 class="card-title">Seus gastos</h3>
             <h6 class="card-subtitle mb-2 text-muted">
               Resumo de todos os seus gastos
@@ -16,6 +17,7 @@
       <div class="col-6 box-stats">
         <div class="card">
           <div class="card-body">
+            <img src="../../assets/images/coins4.png" alt="Maior despesa">
             <h3 class="card-title">Valor médio das despesas</h3>
             <h6 class="card-subtitle mb-2 text-muted">
               Média baseada em todos os seus gastos
@@ -27,6 +29,7 @@
       <div class="col-6 box-stats">
         <div class="card">
           <div class="card-body">
+            <img src="../../assets/images/coins2.png" alt="Maior despesa">
             <h3 class="card-title">Maior despesa</h3>
             <h6 class="card-subtitle mb-2 text-muted">
               Maior valor gasto em todas as suas depesas
@@ -39,6 +42,7 @@
       <div class="col-6 box-stats">
         <div class="card">
           <div class="card-body">
+            <img src="../../assets/images/coins3.png" alt="Menor despesa">
             <h3 class="card-title">Menor despesa</h3>
             <h6 class="card-subtitle mb-2 text-muted">
               Menor valor gasto em todas as suas depesas
@@ -118,7 +122,7 @@ export default {
 
 <style lang="scss" scoped>
 .home {
-  padding: 0.5rem 0 0;
+  // padding: 0.5rem 0 0;
   .box-stats {
     .card {
       color: var(--light);

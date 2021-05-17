@@ -1,13 +1,5 @@
 <template>
   <div class="app-bar row">
-    <!-- <ul class="nav justify-content-end align-items-center">
-      <li class="nav-item">
-        <span id="welcome" class="lead"></span>
-      </li>
-      <li class="nav-item">
-        <img src="../../assets/images/user.png" alt="User" />
-      </li>
-    </ul> -->
     <nav class="navbar navbar-light">
       <div class="container-fluid">
         <div class="d-flex align-items-center">
@@ -42,6 +34,16 @@ export default {
 
 <style lang="scss" scoped>
 .app-bar {
+  .fas {
+    cursor: pointer;
+    font-size: 20px;
+    transition: .3s ease-in-out;
+
+    &:hover {
+      color: var(--featured);
+    }
+  }
+
   .nav-item {
     margin-left: 1rem;
   }
