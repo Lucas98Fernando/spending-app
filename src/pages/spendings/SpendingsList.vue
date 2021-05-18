@@ -16,7 +16,9 @@
 
     <!-- Lista das despesas-->
     <div class="container-fluid container-list-spendings">
-      <div v-if="!activeMonth.data.length">Nenhum dado cadastrado</div>
+      <div v-if="activeMonth.data && !activeMonth.data.length">
+        Nenhum dado cadastrado
+      </div>
       <template v-else>
         <div class="row mb-2 heading-table">
           <div class="col-2"><span>Data de criação</span></div>
@@ -170,6 +172,8 @@ export default {
 
 .container-list-spendings {
   padding: 2rem 0 1rem;
+  height: calc(100vh - 175px);
+  overflow: hidden auto;
 
   .heading-table span {
     font-size: 1.1rem;

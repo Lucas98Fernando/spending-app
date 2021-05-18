@@ -2,6 +2,7 @@
 @import "../../../node_modules/bootstrap/dist/css/bootstrap.css";
 @import "../../../node_modules/@fortawesome/fontawesome-free/css/all.css";
 @import "variables";
+@import "scrollBar";
 
 * {
     font-family: "Poppins", sans-serif;
@@ -22,5 +23,16 @@
 
     &:hover {
         background-color: var(--featured) !important;
+    }
+}
+
+.btn-outline-primary {
+    color: var(--featured) !important;
+    border-color: var(--featured) !important;
+    transition: .5s ease-in-out !important;
+
+    &:hover {
+        background: var(--featured-dark) !important;
+        color: var(--light) !important;
     }
 }

@@ -1,7 +1,17 @@
 <template>
   <div class="row spendings-list-item">
-    <div class="col-2"><small v-date-format="data.createdAt"></small></div>
-    <div class="col-8">{{ data.description }}</div>
+    <div class="col-2"><small class="dateText" v-date-format="data.createdAt"></small></div>
+    <div class="col-8 description">
+      <span>{{ data.description }}</span>
+      <button
+        v-if="data.receipt"
+        @click="openReceipt()"
+        class="btn btn-outline-primary btn-sm"
+      >
+        <i class="fas fa-paperclip"></i>
+        comprovante
+      </button>
+    </div>
     <div class="col-2" v-money-format="data.value" />
   </div>
 </template>
@@ -14,6 +24,12 @@ export default {
       type: Object,
       required: true
     }
+  },
+  methods: {
+    // Método para abrir o comprovante
+    openReceipt () {
+      window.open(this.data.receipt, '_blank')
+    }
   }
 }
 </script>
@@ -25,6 +41,15 @@ export default {
 
   & div:not(:last-child) {
     border-right: 1px solid var(--featured-dark);
+  }
+
+  .dateText {
+    font-size: 0.85rem;
+  }
+
+  .description {
+    display: flex;
+    justify-content: space-between;
   }
 }
 </style>
