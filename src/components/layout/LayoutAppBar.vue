@@ -33,6 +33,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../assets/scss/responsive.scss";
 .app-bar {
   .fas {
     cursor: pointer;
@@ -44,8 +45,28 @@ export default {
     }
   }
 
-  .nav-item {
-    margin-left: 1rem;
+  .container-fluid {
+    @include responsive (sm) {
+      padding: 0.5rem;
+    }
+  }
+
+  .nav {
+    .nav-item {
+      margin-left: 1rem;
+
+      &:nth-child(1) {
+        @include responsive (sm) {
+          display: none;
+        }
+      }
+
+      &:nth-child(2) {
+        @include responsive (sm) {
+          margin-left: 0;
+        }
+      }
+    }
   }
 
   .title-nav {
@@ -53,6 +74,10 @@ export default {
     font-size: 1.5rem;
     font-weight: 600;
     margin-left: 1rem;
+
+    @include responsive (sm) {
+      font-size: 1rem;
+    }
   }
 }
 </style>

@@ -21,9 +21,9 @@
       </div>
       <template v-else>
         <div class="row mb-2 heading-table">
-          <div class="col-2"><span>Data de criação</span></div>
-          <div class="col-8"><span>Descrição</span></div>
-          <div class="col-2"><span>Valor</span></div>
+          <div class="col-sm-2"><span>Data de criação</span></div>
+          <div class="col-sm-8"><span>Descrição</span></div>
+          <div class="col-sm-2"><span>Valor</span></div>
         </div>
         <spending-list-item
           :key="index"

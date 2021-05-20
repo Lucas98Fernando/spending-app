@@ -4,7 +4,11 @@
       <div class="card">
         <div class="card-body">
           <div class="text-center">
-            <img class="fluid logo-login" src="../../assets/images/spending.png" alt="" />
+            <img
+              class="fluid logo-login"
+              src="../../assets/images/spending.png"
+              alt=""
+            />
           </div>
           <h1 class="text-center mb-4">Sp&euro;ndings</h1>
           <div class="form-group mb-4">
@@ -29,18 +33,27 @@
               required
             />
           </div>
-          <button id="btn-login" class="btn btn-primary w-100" :disabled="loading">
-              <!-- Template para quando o processo de autenticação estiver sendo executado -->
-              <template v-if="loading">
-                  <i class="fas fa-spinner fa-spin"></i>
-                  Entrando...
-              </template>
-              <!-- Template padrão do botão de login -->
-              <template v-else>
-                  <i class="fas fa-sign-in-alt"></i>
-                  Entrar
-              </template>
+          <button
+            id="btn-login"
+            class="btn btn-primary w-100"
+            :disabled="loading"
+          >
+            <!-- Template para quando o processo de autenticação estiver sendo executado -->
+            <template v-if="loading">
+              <i class="fas fa-spinner fa-spin"></i>
+              Entrando...
+            </template>
+            <!-- Template padrão do botão de login -->
+            <template v-else>
+              Entrar
+              <i class="fas fa-sign-in-alt"></i>
+            </template>
           </button>
+        </div>
+        <div class="card-footer d-flex justify-content-center">
+          <span
+            >Ainda não possui conta ? <router-link class="link-login" to="/register">Criar</router-link>
+          </span>
         </div>
       </div>
     </form>
@@ -67,7 +80,9 @@ export default {
       this.loading = true
 
       try {
-        const res = await this.$firebase.auth().signInWithEmailAndPassword(email, password)
+        const res = await this.$firebase
+          .auth()
+          .signInWithEmailAndPassword(email, password)
         // Verifica o uid do usuário
         window.uid = res.user.uid
 
@@ -99,7 +114,7 @@ export default {
   },
   // Será chamado antes da rota ser chamada
   beforeRouterEnter (to, from, next) {
-    next(vm => {
+    next((vm) => {
       // Se existe uid, o usuário é redirecionado para rota '/home'
       if (window.uid) {
         vm.$router.push({ name: 'Home' })
@@ -110,6 +125,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../assets/scss/responsive.scss";
+
 #login-page {
   background-image: url("../../assets/images/bg-coins.jpg");
   background-size: cover;
@@ -121,6 +138,11 @@ export default {
   padding: 0 0 0 10%;
   color: var(--dark-medium);
 
+  @include responsive (sm) {
+    padding: 5%;
+    background-position: right;
+  }
+
   .form {
     width: 30%;
     card {
@@ -130,6 +152,17 @@ export default {
 
   .logo-login {
     width: 80px;
+  }
+
+  .link-login {
+    color: var(--featured-dark);
+    text-decoration: none;
+    transition: .5s ease-in-out;
+
+    &:hover {
+      color: var(--featured);
+      transition: .5s ease-in-out;
+    }
   }
 }
 </style>

@@ -1,9 +1,9 @@
 <template>
   <div class="home">
     <div class="row">
-      <div class="col-6 box-stats">
+      <div class="col-md-6 box-stats">
         <div class="card">
-          <div class="card-body">
+          <div class="card-body text-center">
             <img src="../../assets/images/coins1.png" alt="Seus gastos">
             <h3 class="card-title">Seus gastos</h3>
             <h6 class="card-subtitle mb-2 text-muted">
@@ -14,9 +14,9 @@
           </div>
         </div>
       </div>
-      <div class="col-6 box-stats">
+      <div class="col-md-6 box-stats">
         <div class="card">
-          <div class="card-body">
+          <div class="card-body text-center">
             <img src="../../assets/images/coins4.png" alt="Maior despesa">
             <h3 class="card-title">Valor médio das despesas</h3>
             <h6 class="card-subtitle mb-2 text-muted">
@@ -26,9 +26,9 @@
           </div>
         </div>
       </div>
-      <div class="col-6 box-stats">
+      <div class="col-md-6 box-stats">
         <div class="card">
-          <div class="card-body">
+          <div class="card-body text-center">
             <img src="../../assets/images/coins2.png" alt="Maior despesa">
             <h3 class="card-title">Maior despesa</h3>
             <h6 class="card-subtitle mb-2 text-muted">
@@ -39,9 +39,9 @@
           </div>
         </div>
       </div>
-      <div class="col-6 box-stats">
+      <div class="col-md-6 box-stats">
         <div class="card">
-          <div class="card-body">
+          <div class="card-body text-center">
             <img src="../../assets/images/coins3.png" alt="Menor despesa">
             <h3 class="card-title">Menor despesa</h3>
             <h6 class="card-subtitle mb-2 text-muted">

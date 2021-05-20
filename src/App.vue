@@ -10,6 +10,7 @@
             <h2>Sp&euro;ndings</h2>
           </div>
           <layout-navigation />
+          <i class="fas fa-times-circle close-sidebar" @click="$root.$emit('Sidebar::toggle')"></i>
         </div>
         <div class="col content-right py-2 px-4">
           <layout-app-bar />
@@ -66,6 +67,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import "assets/scss/responsive.scss";
 #app {
   min-height: 100vh;
   background-color: var(--dark-medium);
@@ -73,8 +75,28 @@ export default {
 
   .sidebar {
     background-color: var(--dark-medium);
+
     .logo-sidebar {
       width: 70px;
+    }
+
+    @include responsive(sm) {
+      position: fixed;
+      width: 250px;
+      height: 100vh;
+      z-index: 1000;
+    }
+
+    .close-sidebar {
+      display: none;
+
+      @include responsive (sm) {
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 0;
+        font-size: 1.5rem;
+      }
     }
   }
 
@@ -83,6 +105,10 @@ export default {
     border-radius: 40px;
     margin: 0.7rem 0.7rem 0.7rem 0;
     border: 1px solid var(--featured-dark);
+
+    @include responsive (sm) {
+      margin: 0.5rem;
+    }
   }
 }
 </style>

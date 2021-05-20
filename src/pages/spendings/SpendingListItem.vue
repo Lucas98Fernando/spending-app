@@ -1,7 +1,7 @@
 <template>
   <div class="row spendings-list-item">
-    <div class="col-2"><small class="dateText" v-date-format="data.createdAt"></small></div>
-    <div class="col-8 description">
+    <div class="col-sm-2"><small class="dateText" v-date-format="data.createdAt"></small></div>
+    <div class="col-sm-8 description">
       <span>{{ data.description }}</span>
       <button
         v-if="data.receipt"
@@ -12,7 +12,7 @@
         comprovante
       </button>
     </div>
-    <div class="col-2" v-money-format="data.value" />
+    <div class="col-sm-2" v-money-format="data.value" />
   </div>
 </template>
 

@@ -29,6 +29,14 @@ const routes = [{
     title: 'Entre na sua conta'
   },
   component: () => import(/* webpackChunkName: "login" */ '../pages/login/login.vue')
+},
+{
+  path: '/register',
+  name: 'register',
+  meta: {
+    title: 'Crie sua conta'
+  },
+  component: () => import(/* webpackChunkName: "register" */ '../pages/register/register.vue')
 }
 ]
 
@@ -44,7 +52,7 @@ router.beforeEach((to, from, next) => {
   document.title = `Spendings - ${to.meta.title}`
 
   // Se não existe uid e o nome da rota é diferente de login, o usuário é redirecionado para login
-  if (!window.uid && to.name !== 'Login') {
+  if (!window.uid && to.name !== 'Login' && to.name !== 'register') {
     next({
       name: 'Login'
     })
