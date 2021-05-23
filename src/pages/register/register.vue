@@ -85,7 +85,7 @@ export default {
           window.uid = res.user.uid
           this.$router.push({ name: 'Home' })
         } else {
-          const message = 'Senhas diferentes, por favor, tente de novo.'
+          const message = 'As senhas não coincidem, tente novamente.'
           this.$root.$emit('Notification::show', {
             message,
             type: 'danger'
@@ -93,18 +93,22 @@ export default {
           this.password = '' // Limpa o input de senha
           this.confirmPassword = '' // Limpa o input de senha
         }
+        this.$root.$emit('Notification::show', {
+          message: 'Bem-vindo(a) ao Spendings !',
+          type: 'info'
+        })
       } catch (err) {
         let message = ''
         switch (err.code) {
           case 'auth/email-already-in-use':
-            message = 'O endereço de e-mail já está em uso por outra conta.'
+            message = 'O endereço de e-mail informado, já está em uso.'
             this.email = '' // Limpa o input de E-mail
             break
           case 'auth/wrong-password':
             message = 'Senha inválida'
             break
           default:
-            message = 'Não foi possível criar a conta, tente novamente'
+            message = 'Não foi possível criar a conta, tente novamente.'
         }
         this.$root.$emit('Notification::show', {
           message,
