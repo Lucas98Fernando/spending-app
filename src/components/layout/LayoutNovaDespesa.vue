@@ -200,6 +200,7 @@ export default {
             this.closeModal()
             this.form.description = ''
             this.form.value = ''
+            this.form.receipt = ''
             this.loading = false
           }
         })
@@ -218,6 +219,7 @@ export default {
     // Fechar o modal
     closeModal () {
       this.showModal = false
+      this.form.receipt = ''
     }
   }
 }
